@@ -15,11 +15,13 @@ module.exports = gql`
   extend type Mutation {
     createTodo(title: String!, userId: Int): CreateTodoResponse
 
-    updateTodo(
+    markTodoCompleted(
       id: Int!
-      title: String!
-      isCompleted: Boolean!
-    ): CreateTodoResponse
+    ): [Int]
+
+    markTodoUncompleted(
+      id: Int!
+    ): [Int]
 
     deleteTodo(id: Int!): Int
   }

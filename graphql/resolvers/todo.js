@@ -9,16 +9,21 @@ module.exports = {
         isCompleted: false,
       });
     },
-    async updateTodo(_, { id, title, isCompleted }) {
+    async markTodoCompleted(_, { id }) {
       return Todo.update(
         {
-          title,
-          isCompleted,
+          isCompleted: true,
         },
-        { where: { id }, returning: true, plain: true }
-      ).then(() => {
-        return Todo.findByPk(id);
-      });
+        { where: { id } }
+      );
+    },
+    async markTodoUncompleted(_, { id }) {
+      return Todo.update(
+        {
+          isCompleted: false,
+        },
+        { where: { id } }
+      );
     },
     async deleteTodo(_, { id }) {
       return Todo.destroy({ where: { id } });
