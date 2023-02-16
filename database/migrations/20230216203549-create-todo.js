@@ -12,8 +12,8 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      content: {
-        type: Sequelize.TEXT
+      isCompleted: {
+        type: Sequelize.BOOLEAN
       },
       userId: {
         type: Sequelize.INTEGER

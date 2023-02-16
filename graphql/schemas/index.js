@@ -1,5 +1,7 @@
 const { gql } = require("apollo-server-express");
 
+const todoType = require("./todo");
+
 const rootType = gql`
   type Query {
     root: String
@@ -9,4 +11,4 @@ const rootType = gql`
   }
 `;
 
-module.exports = [rootType];
+module.exports = [rootType, todoType];
