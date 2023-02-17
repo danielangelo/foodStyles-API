@@ -17,7 +17,7 @@ module.exports = {
         { where: { id } }
       );
     },
-    async markTodoUncompleted(_, { id }) {
+    async markTodoIncompleted(_, { id }) {
       return Todo.update(
         {
           isCompleted: false,
@@ -31,8 +31,16 @@ module.exports = {
   },
 
   Query: {
-    async listTodos() {
-      return Todo.findAll();
+    async listTodos(_, { filter }) {
+      switch (filter) {
+        case "completed":
+          return Todo.findAll({ where: { isCompleted: true } });
+        case "incompleted":
+          return Todo.findAll({ where: { isCompleted: false } });
+        case "all":
+        default:
+          return Todo.findAll();
+      }
     },
   },
 };

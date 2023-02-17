@@ -9,19 +9,15 @@ module.exports = gql`
   }
 
   extend type Query {
-    listTodos: [Todo!]
+    listTodos(filter: String): [Todo!]
   }
 
   extend type Mutation {
     createTodo(title: String!, userId: Int): CreateTodoResponse
 
-    markTodoCompleted(
-      id: Int!
-    ): [Int]
+    markTodoCompleted(id: Int!): [Int]
 
-    markTodoUncompleted(
-      id: Int!
-    ): [Int]
+    markTodoIncompleted(id: Int!): [Int]
 
     deleteTodo(id: Int!): Int
   }
