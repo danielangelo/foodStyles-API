@@ -34,12 +34,18 @@ module.exports = {
     async listTodos(_, { filter }) {
       switch (filter) {
         case "completed":
-          return Todo.findAll({ where: { isCompleted: true } });
+          return Todo.findAll({
+            where: { isCompleted: true },
+            order: [["createdAt", "DESC"]],
+          });
         case "incompleted":
-          return Todo.findAll({ where: { isCompleted: false } });
+          return Todo.findAll({
+            where: { isCompleted: false },
+            order: [["createdAt", "DESC"]],
+          });
         case "all":
         default:
-          return Todo.findAll();
+          return Todo.findAll({ order: [["createdAt", "DESC"]] });
       }
     },
   },
